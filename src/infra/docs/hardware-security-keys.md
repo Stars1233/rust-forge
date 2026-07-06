@@ -11,9 +11,9 @@ team officially supports hardware security keys in partnership with
 
 Currently, the members of the following teams are eligible for this grant:
 
-* `infra`  
+* `infra`
 * `crates.io`
-* `docs.rs`  
+* `docs.rs`
 * `release`
 * `triagebot`
 * `bors`
@@ -42,9 +42,9 @@ CLI or Yubico Authenticator to [check the current firmware version] of a YubiKey
 There are at least two official open-source tools provided by Yubico tools that
 help setting up an Yubikey:
 
-* [Yubico Authenticator] (sources : [Desktop and Android] | [iOS]):  
-  * The Desktop app is pretty capable of handling most of the tasks.  
-  * You can download the Mobile App directly on Google Play or Apple App Store.  
+* [Yubico Authenticator] (sources : [Desktop and Android] | [iOS]):
+  * The Desktop app is pretty capable of handling most of the tasks.
+  * You can download the Mobile App directly on Google Play or Apple App Store.
 * Yubico Manager CLI (sources: [yubikey-manager]): for advanced use cases.
 
 As a good first step, the Rust infrastructure team recommends using the Yubico
@@ -82,7 +82,7 @@ should mind the *security key* web browser dialog.
 This step triggers the check for the human presence against the hardware
 key. Touch your YubiKey to confirm the authentication.
 
-Our [upcoming infrastructure policy] mandates using this option for all
+Our [MFA policy] mandates using this option for all
 compatible critical Rust Infrastructure systems.
 
 ### Hardware-backed multi factor authentication
@@ -157,7 +157,7 @@ For now, you may want to [watch this issue] to follow-up on this topic.
 
 ### Which services should I use 2FA with my YubiKey?
 
-Please check our [upcoming infrastructure policy].
+Please check our [MFA policy].
 
 ### How do I handle my preferred cloud CLI authentication with my YubiKey?
 
@@ -189,7 +189,7 @@ The Rust infrastructure provides SSO access to Project members through our
 [FIDO2 standard]: https://fidoalliance.org/specifications
 [webauthn]: https://en.wikipedia.org/wiki/WebAuthn
 [official steps]: https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication#configuring-two-factor-authentication-using-a-security-key
-[upcoming infrastructure policy]: https://github.com/rust-lang/rust-forge/pull/1051
+[MFA policy]: ../policies/mfa-critical-systems.md
 [hardware-backed TOTP code generation]: https://support.yubico.com/s/article/Using-your-YubiKey-with-authenticator-codes
 [options for hardware-backed SSH key pairs]: https://developers.yubico.com/SSH
 [OpenSSH built-in support for FIDO2 authentication]: https://developers.yubico.com/SSH/Securing_SSH_with_FIDO2.html
