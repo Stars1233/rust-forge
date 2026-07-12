@@ -13,9 +13,10 @@ To enable mentions, add entries to the `[mentions]` table in `triagebot.toml`.
 
 Each key in the table should either be a path in the repo or should be a string (when `type="content"`). See the dedicated section below for more details.
 
-There are three optional values that can be specified in the table:
+There are four optional values that can be specified in the table:
 
 * `type` --- Specifies the matching type that must be satisfied, either `filename` (the default) or `content`.
+* `trigger_files` --- For `type = "content"` mentions, restrict the content matching to only the specified array of file globs.
 * `cc` --- A list of strings of users to ping.
   They should start with `@` like `@ehuss` or `@rust-lang/clippy`.
   If this is not specified, nobody will be pinged.
@@ -60,6 +61,14 @@ otherwise, make sure you bump the `FORMAT_VERSION` constant.
 [mentions."#[rustc_attr]"]
 type = "content"
 cc = ["@someone"]
+
+[mentions."miri"]
+type = "content"
+trigger_files = ["library"]
+message = """
+Any special-casing of Miri in the standard library requires review.
+"""
+cc = ["@rust-lang/miri"]
 ```
 
 ## Implementation
