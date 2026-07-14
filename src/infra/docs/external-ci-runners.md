@@ -28,6 +28,10 @@ Here is an explanation of the fields in the list below:
   This determines the maximum number of GitHub Actions jobs that can run on the runner.
   The concurrency is shared among repositories. If all runners are busy, GitHub Actions will queue
   the jobs until a runner is available.
+- `runs-on`: The label(s) that you should use in the `runs-on` field of a GitHub Actions workflow to
+  run this runner.
+  To check where a runner is used, search for the label in
+  [GitHub Search](https://github.com/search?q=org%3Arust-lang%20%5B%22self-hosted%22%2C%20%22linux%22%2C%20%22powerpc64%22%2C%20%22musl%22%5D&type=code).
 - `repositories`: The repositories that are enabled to use the runner. To add your repository to the
   list, please open a PR to this file.
   Make sure the workflow you want to run the runner on passes [`zizmor`](https://zizmor.sh/).
@@ -39,19 +43,73 @@ Here is an explanation of the fields in the list below:
 ### `powerpc64-unknown-linux-musl`
 
 - max concurrency: 4
+- `runs-on`: `["self-hosted", "linux", "powerpc64", "musl"]`
 - repositories:
   - [`compiler-builtins`](https://github.com/rust-lang/compiler-builtins)
   - [`libc`](https://github.com/rust-lang/libc)
-- [example workflow](https://github.com/rust-lang/compiler-builtins/pull/1219)
 - contact:
   - Zulip: [Aelin](https://rust-lang.zulipchat.com/#user/338253)
   - Email: `aelin@postmarketos.org` (faster response)
 
 ### `ubuntu-2X.04-riscv`
 
-- variants:
-  - `ubuntu-24.04-riscv`
-  - `ubuntu-26.04-riscv`
+- `runs-on`:
+  - `ubuntu-24.04-riscv` for the Ubuntu 24 runner.
+  - `ubuntu-26.04-riscv` for the Ubuntu 26 runner.
 - repositories:
   - [`rustc_codegen_cranelift`](https://github.com/rust-lang/rustc_codegen_cranelift) (enabled, unused)
 - [documentation](https://riscv-runners.riseproject.dev/)
+
+## `powerpc64le-unknown-linux-gnu`
+
+- `runs-on`: `ubuntu-24.04-ppc64le`
+- type: [IBM runners](#ibm-runners)
+
+## `s390x-unknown-linux-gnu`
+
+This target is available in various external runners.
+
+### Canonical runner
+
+- `runs-on`: `self-hosted-linux-s390x-resolute-medium-rust`
+- repositories: it works on all repositories, there's no need to enable it.
+- type: [Canonical runners](#canonical-runners).
+
+### IBM runner
+
+- `runs-on`: `ubuntu-24.04-s390x`
+- type: [IBM runners](#ibm-runners).
+
+## Types of runners
+
+This section groups info common to more than one runner.
+
+### Canonical runners
+
+- max concurrency: 10
+- [GitHub App](https://github.com/organizations/rust-lang/settings/installations/142169754)
+- [Operator Repository](https://github.com/canonical/github-runner-operator)
+- contact: downtimes are reported in the
+  [Canonical Runners downtime Zulip topic](https://rust-lang.zulipchat.com/#narrow/channel/242791-t-infra/topic/Canonical.20Runners.20downtime/with/609185710)
+- repositories: the app is installed org-wide, so all repositories can use the runners.
+
+### IBM runners
+
+- [GitHub App](https://github.com/apps/power-z-gha-runner/)
+- repositories:
+  - [libc](https://github.com/rust-lang/libc)
+  - [stdarch](https://github.com/rust-lang/stdarch)
+  - [compiler-builtins](https://github.com/rust-lang/compiler-builtins)
+
+We can't install this GitHub App in the `rust-lang/rust` repository
+because the app requires admin permission to run.
+See [this](https://github.com/IBM/actionspz/issues/20) GitHub issue for more info.
+
+<details>
+<summary><i>Infrastructure details</i></summary>
+
+- We installed the GitHub App from the
+  [rust-lang-owner](https://github.com/rust-lang-owner) user account.
+- The runners were requested in [this](https://github.com/IBM/actionspz/issues/24) and the linked GitHub issues.
+
+</details>
