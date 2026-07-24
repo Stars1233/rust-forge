@@ -51,7 +51,7 @@ Here is an explanation of the fields in the list below:
   - Zulip: [Aelin](https://rust-lang.zulipchat.com/#user/338253)
   - Email: `aelin@postmarketos.org` (faster response)
 
-### `ubuntu-2X.04-riscv`
+### `riscv64gc-unknown-linux-gnu`
 
 - `runs-on`:
   - `ubuntu-24.04-riscv` for the Ubuntu 24 runner.
@@ -60,22 +60,22 @@ Here is an explanation of the fields in the list below:
   - [`rustc_codegen_cranelift`](https://github.com/rust-lang/rustc_codegen_cranelift) (enabled, unused)
 - [documentation](https://riscv-runners.riseproject.dev/)
 
-## `powerpc64le-unknown-linux-gnu`
+### `powerpc64le-unknown-linux-gnu`
 
 - `runs-on`: `ubuntu-24.04-ppc64le`
 - type: [IBM runners](#ibm-runners)
 
-## `s390x-unknown-linux-gnu`
+### `s390x-unknown-linux-gnu`
 
 This target is available in various external runners.
 
-### Canonical runner
+*Canonical runner:*
 
 - `runs-on`: `self-hosted-linux-s390x-resolute-medium-rust`
 - repositories: it works on all repositories, there's no need to enable it.
 - type: [Canonical runners](#canonical-runners).
 
-### IBM runner
+*IBM runner:*
 
 - `runs-on`: `ubuntu-24.04-s390x`
 - type: [IBM runners](#ibm-runners).
